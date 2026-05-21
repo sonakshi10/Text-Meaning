@@ -1,1 +1,70 @@
+# South Asian Cuisine RAG System
+
+## Overview
+This project implements a Retrieval-Augmented Generation (RAG) system for **South Asian cuisine**. It combines:
+
+- **Dense + keyword-based retrieval**
+- **Cross-encoder reranking**
+- **Prompt-based grounded answer generation using Qwen**
+- **Benchmark-based evaluation**
+- **Interactive Gradio user interface**
+
+
+---
+
+## Required Input Files
+Make sure the following files are available in the same working directory as the notebook:
+
+- `bge_chunks.pkl`
+- `bge_index.faiss`
+- `benchmark_dataset.json`
+
+
+
+---
+
+## Correct Execution Order
+
+### 1. Retrieval Pipeline
+Run the **Retrieval Pipeline** section next.
+
+This section:
+- loads `bge_index.faiss`
+- loads `bge_chunks.pkl`
+- constructs the retrieval pipeline
+- performs hybrid retrieval and reranking
+
+This is the section to run before any generation or UI cell.
+
+---
+
+### 2. LLM Prompting and Evaluation
+Run the **LLM Prompting and Evaluation** section after retrieval is ready.
+
+This section:
+- loads the benchmark dataset
+- builds grounded prompts
+- runs Qwen-based answer generation
+- evaluates prompt strategies
+- computes metrics such as:
+  - Exact Match
+  - Token F1
+  - ROUGE-L
+  - BERTScore
+- saves generation outputs and summary tables
+
+This section uses:
+
+- `benchmark_dataset.json`
+
+---
+
+### 3. Orchestration / UI
+Run the **Orchestration / UI** section last.
+
+This section:
+- connects retrieval and generation into a user-facing pipeline
+- launches the Gradio interface
+- allows interactive querying of the system
+
 
