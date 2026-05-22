@@ -1,36 +1,45 @@
 # South Asian Cuisine RAG System
 
-A Retrieval-Augmented Generation (RAG) system for South Asian cuisine using hybrid retrieval, reranking, grounded LLM generation, and evaluation pipelines.
+This project explores how Retrieval-Augmented Generation (RAG) can be used to build a grounded question answering system for South Asian cuisine.
 
----
+The system combines semantic retrieval, keyword search, reranking, and Qwen based answer generation to answer food related queries using retrieved context instead of relying purely on the language model.
 
-## Features
+It was built as part of my NLP and RAG coursework during my MSc in Advanced Computer Science at the University of Manchester.
 
-- Hybrid retrieval using dense embeddings and keyword search
-- Cross-encoder reranking for improved retrieval quality
-- Grounded answer generation using Qwen
-- Evaluation pipeline with multiple NLP metrics
-- Interactive Gradio interface for querying the system
+What the system does:
 
----
+- retrieves relevant cuisine related context using hybrid search
+- reranks results using a cross encoder
+- generates grounded answers using Qwen
+- evaluates answer quality using multiple NLP metrics
+- provides an interactive Gradio interface for querying
 
-## Tech Stack
+The project uses:
+Python, FAISS, Sentence Transformers, PyTorch, Qwen, Gradio, and BERTScore.
 
-- Python
-- FAISS
-- Sentence Transformers
-- Qwen LLM
-- Gradio
-- BERTScore
-- ROUGE
-
----
-
-## Required Files
-
-Place the following files in the working directory before running the notebook:
+Before running the notebook, place these files in the working directory:
 
 ```bash
 bge_chunks.pkl
 bge_index.faiss
 benchmark_dataset.json
+```
+
+The notebook is organised into three stages:
+
+1. Retrieval pipeline  
+   Loads the FAISS index, performs hybrid retrieval, and reranks results.
+
+2. Prompting and evaluation  
+   Generates answers using Qwen and evaluates performance using Exact Match, ROUGE L, Token F1, and BERTScore.
+
+3. Interactive interface  
+   Launches a Gradio UI for querying the system interactively.
+
+Some future improvements I would like to explore:
+
+- conversational memory
+- recipe recommendation workflows
+- image based food retrieval
+- fine tuned cuisine specific embeddings
+- deployment as a full web application
